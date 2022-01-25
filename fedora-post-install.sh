@@ -28,12 +28,9 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 echo "Updating once again..."
 sudo dnf update -y \
 
-#Enable the Google Chrome repo
-sudo dnf install fedora-workstation-repositories -y \
-sudo dnf config-manager --set-enabled google-chrome -y \
 
 echo "Installing Software"
-sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git google-chrome-stable gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code google-chrome-stable
+sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git google-chrome-stable gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code
 
 #Install flatpak Discord because RPMF Discord not working right now :(
 flatpak install flathub com.discordapp.Discord \
