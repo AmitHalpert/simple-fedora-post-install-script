@@ -1,14 +1,7 @@
 #!/bin/sh
 
 echo "Intial dnf and firmware updates"
-sudo dnf upgrade --refresh -y
-sudo dnf check
-sudo dnf autoremove -y
-sudo fwupdmgr get-devices
-sudo fwupdmgr refresh --force
-sudo fwupdmgr get-updates
-sudo fwupdmgr update -y \
-
+sudo dnf update -y \
 
 #I added some flags to the dnf conf file to speed it up
 echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf \
@@ -19,22 +12,22 @@ cat /etc/dnf/dnf.conf \
 
 
 echo "Adding additional rpmfusion free & nonfree repos"
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm -y
-sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm -y
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm -y \
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm -y \
 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-sudo dnf update -y
+sudo dnf update -y \
 
 echo "Installing flatpak (needed for certain shitware)"
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y \
 
 echo "Updating dnf repos once again..."
-sudo dnf upgrade --refresh -y
+sudo dnf update -y \
 
 #Enable the Google Chrome repo
-sudo dnf install fedora-workstation-repositories
-sudo dnf config-manager --set-enabled google-chrome -y
+sudo dnf install fedora-workstation-repositories -y \
+sudo dnf config-manager --set-enabled google-chrome -y \
 
 sudo dnf install -y \
 neofetch \
@@ -54,7 +47,7 @@ code \
 google-chrome-stable \
 
 #Install flatpak Discord because RPMF Discord not working right now :(
-flatpak install flathub com.discordapp.Discord
+flatpak install flathub com.discordapp.Discord \
 
 #Recovering maximize, minimize buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
