@@ -15,7 +15,7 @@ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfre
 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-sudo dnf check-update -y
+sudo dnf update -y
 
 echo "Installing flatpak (needed for certain shitware)"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y
@@ -23,9 +23,12 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 echo "Updating dnf repos once again..."
 sudo dnf upgrade --refresh -y
 
+#Enable the Google Chrome repo
+sudo dnf install fedora-workstation-repositories
 sudo dnf config-manager --set-enabled google-chrome -y
 
 sudo dnf install -y \
+neofetch
 git `#VCS done right` \
 google-chrome-stable \ 
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
@@ -39,8 +42,13 @@ vim `#the better vim` \
 akmod-nvidia `#install nvidia driver` \
 xorg-x11-drv-nvidia-cuda \
 code \
+google-chrome-stable \
 
-flatpak install flathub com.discordapp.Discord -y
+#Install flatpak Discord because RPMF Discord not working right now :(
+flatpak install flathub com.discordapp.Discord
+
+#Recovering maximize, minimize buttons
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
 
 
