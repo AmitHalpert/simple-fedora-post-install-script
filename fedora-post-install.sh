@@ -30,10 +30,8 @@ sudo dnf update -y
 
 
 echo "Installing Software"
-sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git google-chrome-stable gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code
+sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code
 
-#Install flatpak Discord because RPMF Discord not working right now :(
-flatpak install flathub com.discordapp.Discord
 
 #Recovering maximize, minimize buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
