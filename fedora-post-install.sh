@@ -37,7 +37,7 @@ sudo dnf install fedora-workstation-repositories
 sudo dnf config-manager --set-enabled google-chrome -y
 
 sudo dnf install -y \
-neofetch
+neofetch \
 git `#VCS done right` \
 google-chrome-stable \ 
 gnome-shell-extension-dash-to-dock `#dash for gnome` \
