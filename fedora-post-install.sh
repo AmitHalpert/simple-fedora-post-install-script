@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Intial dnf and firmware updates"
-sudo dnf update -y \
+sudo dnf update -y
 
 #add some flags to the dnf conf file to speed it up
 echo "Speeding Up DNF"
@@ -20,20 +20,20 @@ flatpak update
 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-sudo dnf update -y \
+sudo dnf update -y
 
 echo "Installing flatpak (needed for certain shitware)"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
 
 echo "Updating once again..."
-sudo dnf update -y \
+sudo dnf update -y
 
 
 echo "Installing Software"
 sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git google-chrome-stable gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code
 
 #Install flatpak Discord because RPMF Discord not working right now :(
-flatpak install flathub com.discordapp.Discord \
+flatpak install flathub com.discordapp.Discord
 
 #Recovering maximize, minimize buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
