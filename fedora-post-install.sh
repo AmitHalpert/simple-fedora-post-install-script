@@ -10,7 +10,6 @@ echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
 echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
 
 
-
 echo "Enabling RPM Fusion"
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
@@ -23,7 +22,7 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 sudo dnf update -y
 
 echo "Installing flatpak (needed for certain shitware)"
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo \
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Updating once again..."
 sudo dnf update -y
@@ -32,10 +31,11 @@ sudo dnf update -y
 echo "Installing Software"
 sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code
 
+echo "Installing flatpak Discord"
+flatpak install flathub com.discordapp.Discord
 
 #Recovering maximize, minimize buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-
 
 
 #The user needs to reboot to apply all changes.
