@@ -7,7 +7,16 @@ sudo dnf autoremove -y
 sudo fwupdmgr get-devices
 sudo fwupdmgr refresh --force
 sudo fwupdmgr get-updates
-sudo fwupdmgr update -y
+sudo fwupdmgr update -y \
+
+
+#I added some flags to the dnf conf file to speed it up
+echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf \
+echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf \
+echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf \
+cat /etc/dnf/dnf.conf \
+
+
 
 echo "Adding additional rpmfusion free & nonfree repos"
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm -y
