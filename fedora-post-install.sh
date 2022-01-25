@@ -15,16 +15,15 @@ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfre
 
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-sudo dnf check-update
+sudo dnf check-update -y
 
 echo "Installing flatpak (needed for certain shitware)"
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y
 
 echo "Updating dnf repos once again..."
 sudo dnf upgrade --refresh -y
 
-echo "Installing jitt shit..."
-sudo dnf config-manager --set-enabled google-chrome
+sudo dnf config-manager --set-enabled google-chrome -y
 
 sudo dnf install -y \
 git `#VCS done right` \
@@ -39,9 +38,9 @@ yt-dlp `#Allows you to download and save youtube videos but also to open their l
 vim `#the better vim` \
 akmod-nvidia `#install nvidia driver` \
 xorg-x11-drv-nvidia-cuda \
-code
+code \
 
-flatpak install flathub com.discordapp.Discord
+flatpak install flathub com.discordapp.Discord -y
 
 
 
