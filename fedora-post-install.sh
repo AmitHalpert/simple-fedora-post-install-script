@@ -3,11 +3,6 @@
 echo "Intial dnf and firmware updates"
 sudo dnf update -y
 
-#add some flags to the dnf conf file to speed it up
-echo "Speeding Up DNF"
-echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
-echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
-
 
 echo "Enabling RPM Fusion"
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
