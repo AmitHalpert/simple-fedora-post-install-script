@@ -8,6 +8,3 @@ The script optimizes and installs must have features in Fedora.</p>
 curl "https://raw.githubusercontent.com/AmitHalpert/simple-fedora-post-install-script/master/fedora-post-install.sh" | sh
 ```
 
-*If you have Improvements or Issues, contact me!*
-
-
