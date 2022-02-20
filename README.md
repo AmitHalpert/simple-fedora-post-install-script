@@ -2,6 +2,8 @@
 <p>A basic post install get-up-and-running Fedora GNOME install script.<br>
 The script optimizes and installs must have features in Fedora.</p>
 
+*Includes free and **non-free** software*
+
 ## run it using
 
 ``` bash
