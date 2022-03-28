@@ -22,7 +22,7 @@ sudo dnf update -y
 ###
 
 echo "Installing Software"
-sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code steam
+sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code steam discord
 
 echo "Installing google chrome"
 sudo dnf config-manager --set-enabled google-chrome
@@ -30,9 +30,6 @@ sudo dnf install -y google-chrome-stable
 
 # Virtual Machines
 sudo systemctl enable --now libvirtd
-
-echo "Installing flatpak Discord"
-flatpak install -y discord
 
 
 #Recovering maximize, minimize buttons
