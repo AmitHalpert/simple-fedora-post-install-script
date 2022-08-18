@@ -22,7 +22,7 @@ sudo dnf update -y
 ###
 
 echo "Installing Software"
-sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim akmod-nvidia xorg-x11-drv-nvidia-cuda code steam discord
+sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp neovim akmod-nvidia xorg-x11-drv-nvidia-cuda code steam discord npm java-11-openjdk-devel.x86_64
 
 echo "Installing google chrome"
 sudo dnf config-manager --set-enabled google-chrome
