@@ -28,9 +28,15 @@ echo "Installing google chrome"
 sudo dnf config-manager --set-enabled google-chrome
 sudo dnf install -y google-chrome-stable
 
+###
+# Config
+###
+
 # Virtual Machines
 sudo systemctl enable --now libvirtd
 
+# Set text editor
+git config --global core.editor "neovim"
 
 #Recovering maximize, minimize buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
