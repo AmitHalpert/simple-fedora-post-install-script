@@ -1,45 +1,63 @@
-#!/bin/sh
+#! /bin/bash
+# ./fedora-post-install.sh
 
-echo "Updating"
-sudo dnf update -y
+HEIGHT=25
+WIDTH=100
+CHOICE_HEIGHT=4
+BACKTITLE="Fedora post-install script by AmitHalpert"
+MENU_MSG="Please select one of following options:"
 
+# Check for updates
+sudo dnf upgrade --refresh
+sudo dnf autoremove -y
+sudo fwupdmgr get-devices
+sudo fwupdmgr refresh --force
+sudo fwupdmgr get-updates
+sudo fwupdmgr update -y
 
-echo "Enabling RPM Fusion"
-sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+# Install some tools required by the script
+sudo dnf install axel deltarpm unzip -y
 
-echo "Enabling Flatpak"
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak update
+# Check if we have dialog installed
+# If not, install it
+if [ "$(rpm -q dialog 2>/dev/null | grep -c "is not installed")" -eq 1 ]; 
+then
+    sudo dnf install -y dialog
+fi
 
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+OPTIONS=(
+    1 "Install basic apps"
+    2 "install WhiteSur-Dark Theme"
+    3 "Reboot"
+    4 "Quit"
+)
 
-echo "Updating once again..."
-sudo dnf update -y
+while true; do
+    CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE - Main menu $(lscpu | grep -i "Model name:" | cut -d':' -f2- - )" \
+                --title "$TITLE" \
+                --nocancel \
+                --menu "$MENU_MSG" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >/dev/tty)
+    clear
+    case $CHOICE in 
+        1) 
+            scripts/installBasicApps.sh
+        ;;
+       
+        2) 
+            scripts/installWhiteSurDarkTheme.sh
+        ;;
 
-###
-# Install base packages and applications
-###
+        3)
+            sudo systemctl reboot
+        ;;
 
-echo "Installing Software"
-sudo dnf install -y gnome-extensions-app gnome-tweaks neofetch git gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp neovim akmod-nvidia xorg-x11-drv-nvidia-cuda code steam discord npm java-11-openjdk-devel.x86_64
+        4) 
+            echo "Please Reboot to apply all changes" && exit 0
+        ;;
 
-echo "Installing google chrome"
-sudo dnf config-manager --set-enabled google-chrome
-sudo dnf install -y google-chrome-stable
-
-###
-# Config
-###
-
-# Virtual Machines
-sudo systemctl enable --now libvirtd
-
-# Set text editor
-git config --global core.editor "neovim"
-
-#Recovering maximize, minimize buttons
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-
-#The user needs to reboot to apply all changes.
-echo "Please Reboot to apply all changes" && exit 0
+    esac
+done
