@@ -7,6 +7,8 @@ The script optimizes and installs must have features in Fedora.
 ## run it using
 
 ``` bash
-curl "https://raw.githubusercontent.com/AmitHalpert/simple-fedora-post-install-script/master/fedora-post-install.sh" | sh
+git clone https://github.com/AmitHalpert/simple-fedora-post-install-script.git
+cd simple-fedora-post-install-script
+sudo ./fedora-post-install.sh
 ```
 
