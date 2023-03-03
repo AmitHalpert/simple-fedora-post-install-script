@@ -28,8 +28,10 @@ fi
 OPTIONS=(
     1 "Install basic apps"
     2 "install WhiteSur-Dark Theme"
-    3 "Reboot"
-    4 "Quit"
+    3 "install Extensions"
+    4 "install Codecs"
+    5 "Reboot"
+    6 "Quit"
 )
 
 while true; do
@@ -51,12 +53,22 @@ while true; do
             scripts/installWhiteSurDarkTheme.sh
         ;;
 
-        3)
-            sudo systemctl reboot
+        3) 
+            scripts/installExtensions.sh
         ;;
 
         4) 
-            echo "Please Reboot to apply all changes" && exit 0
+            scripts/installCodecs.sh
+        ;;
+
+        5)
+            sudo systemctl reboot
+        ;;
+
+        6) 
+            RED='\033[0;31m'
+            NC='\033[0m'
+            echo -e "${RED}Please Reboot to apply all changes${NC}" && exit 0
         ;;
 
     esac
