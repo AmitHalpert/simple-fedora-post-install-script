@@ -31,7 +31,7 @@ while true; do
         ###
         # Install base applications
         ###
-        sudo dnf install google-chrome-stable gnome-extensions-app clang gnome-tweaks neofetch gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim code steam discord npm java-11-openjdk-devel.x86_64 -y
+        sudo dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda google-chrome-stable gnome-extensions-app clang gnome-tweaks neofetch gnome-shell-extension-dash-to-dock gnome-tweaks htop mpv telegram-desktop virt-manager yt-dlp vim code steam discord npm java-11-openjdk-devel.x86_64 -y
 
         # Set text editor
         git config --global core.editor "vim"
