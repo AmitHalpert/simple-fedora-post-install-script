@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#! /bin/bash
+# ./scripts/installWhiteSurDarkTheme.sh.sh
 TMPDIR=$(mktemp -d)
 echo "Installing WhiteSur-Dark theme"
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme $TMPDIR && $TMPDIR/install.sh
