@@ -1,5 +1,5 @@
 #! /bin/bash
-# ./scripts/installWhiteSurDarkTheme.sh.sh
+# ./scripts/installWhiteSurDarkTheme.sh
 while true; do
     read -rp "do you want to install all the packages above? [y/N]: " yn
     
