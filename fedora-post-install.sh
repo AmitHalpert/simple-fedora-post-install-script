@@ -10,8 +10,9 @@ MENU_MSG="Please select one of following options:"
 # Enable minimize and maximize buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
+
 # Check for updates
-sudo dnf upgrade --refresh
+sudo dnf update -y
 sudo dnf autoremove -y
 sudo fwupdmgr get-devices
 sudo fwupdmgr refresh --force
